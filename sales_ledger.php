@@ -34,6 +34,7 @@
       padding: 10px;
       border-radius: 10px;
       margin-bottom: 10px;
+      box-shadow:0 0 8px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -97,12 +98,6 @@ $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
       <div class="fs-4">৳ 28,580</div>
     </div>
 
-    <!-- <div class="nav-btns d-flex justify-content-between mb-3">
-      <button class="btn btn-outline-secondary w-25">দিন</button>
-      <button class="btn btn-outline-secondary w-25">সপ্তাহ</button>
-      <button class="btn btn-primary w-25">মাস</button>
-      <button class="btn btn-outline-secondary w-25">বছর</button>
-    </div> -->
    <div class="d-flex justify-content-center gap-2 mb-3">
     <?php
     $tabs = [
@@ -118,9 +113,7 @@ $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
     ?>
    </div> 
 
-    <!-- <div class="mb-3">
-      <input type="text" class="form-control search-bar" placeholder="অনুসন্ধান করুন (নাম, মোবাইল, রিসিপ্ট)">
-    </div> -->
+   
     <form action="" method="GET" class="mb-4">
         <input type="text" name="search" class="form-control" placeholder="অনুসন্ধান করুন (নাম, মোবাইল, রিসিপ্ট)" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
 
