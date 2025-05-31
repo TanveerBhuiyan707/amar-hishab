@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>বাকির খাতা</title>
+  <title>দোকানের স্টক</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -94,11 +94,12 @@
 <body>
 
   <div class="top-bar">
-    <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer;">
+      <i class="fas fa-arrow-left"></i>
+    </div>
     <div><span>দোকানের স্টক</span></div>
     <div class="border p-1 rounded-3 border-secondary"><span>স্টকের ইতিহাস</span></div>
     <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
-
   </div>
   <div class="blue-box">
     <div class="balance-box">
@@ -138,5 +139,11 @@
   <div class="item-1 r"><span> পন্য সংখ্যা আপডেট করুন</span></div>
   <div class="item-2 r"><span>প্রোডাক্ট যুক্ত করুন</span></div>
 </div>
+
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
 </body>
 </html>

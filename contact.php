@@ -93,7 +93,9 @@
 <body>
 
 <div class="top-bar d-flex align-items-center justify-content-between ">
-    <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer;">
+        <i class="fas fa-arrow-left"></i>
+    </div>
     <span>যোগাযোগ</span>
     <div>
       <img src="img/pdf-2.png" alt="PDF" width="24">
@@ -135,6 +137,10 @@
         `;
     }
 </script>
-
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
 </body>
 </html>

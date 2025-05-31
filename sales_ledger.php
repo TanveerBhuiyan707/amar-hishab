@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>বেচার খাতা</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -75,7 +76,10 @@ $current_month_bn = $months_bn[$current_month];
 $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
 ?>
   <div class="top-bar d-flex align-items-center justify-content-between">
-    <span>বেচার খাতা</span>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer;">
+      <i class="fas fa-arrow-left"></i>
+    </div>
+    <span>বিক্রির খাতা</span>
     <div>
       <img src="img/pdf-2.png" alt="PDF" width="24">
       <img src="https://img.icons8.com/ios-glyphs/30/000000/help.png" alt="Help" width="24">
@@ -113,7 +117,7 @@ $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
     ?>
    </div> 
 
-   
+
     <form action="" method="GET" class="mb-4">
         <input type="text" name="search" class="form-control" placeholder="অনুসন্ধান করুন (নাম, মোবাইল, রিসিপ্ট)" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
 
@@ -161,7 +165,11 @@ $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
     </div>
 
   </div>
-
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

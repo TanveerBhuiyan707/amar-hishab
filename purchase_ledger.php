@@ -76,7 +76,9 @@ $current_month_bn = $months_bn[$current_month];
 $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
 ?>
   <div class="top-bar d-flex align-items-center justify-content-between">
-    <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer";>
+      <i class="fas fa-arrow-left"></i>
+    </div>
     <span>কেনার খাতা</span>
     <div>
       <img src="img/pdf-2.png" alt="PDF" width="24">
@@ -167,7 +169,11 @@ $selected_tab = isset($_GET['filter']) ? $_GET['filter'] : 'month';
     </div>
 
   </div>
-
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

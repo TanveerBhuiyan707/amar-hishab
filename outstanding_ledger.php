@@ -54,7 +54,9 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer">
+      <i class="fas fa-arrow-left"></i>
+    </div>
 
     <div><strong>বাকির খাতা</strong></div>
     <div>
@@ -92,5 +94,11 @@
     <button class="btn btn-primary">+ নতুন বাকি</button>
   </div>
 </main>
+
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
 </body>
 </html>

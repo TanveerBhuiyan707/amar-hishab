@@ -6,7 +6,6 @@
   <title>খরচ</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
   <style>
     * {
@@ -110,7 +109,9 @@
 <body>
 
   <header>
-    <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+    <div class="back-btn" onclick="goBack()" style="cursor:pointer">
+      <i class="fas fa-arrow-left"></i>
+    </div>
     <h3>খরচ</h3>
     <i class="fas fa-question-circle"></i>
   </header>
@@ -173,6 +174,10 @@
   <div class="learn-btn">
     ▶ চলুন শিখে নেই কিভাবে এই ফিচারটি কাজ করে
   </div>
-
+<script>
+  function goBack(){
+    window.history.back();
+  }
+</script>
 </body>
 </html>
