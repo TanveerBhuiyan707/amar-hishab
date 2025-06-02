@@ -1,0 +1,195 @@
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+
+<h4>প্রোডাক্ট এন্ট্রি ফর্ম</h4>
+
+<form action="save_product.php" method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;" id="productForm">
+  <!-- প্রোডাক্ট নাম -->
+  <label for="product_name">প্রোডাক্ট নাম *</label>
+  <input type="text" id="product_name" name="product_name" required>
+
+  <!-- প্রোডাক্ট সংখ্যা -->
+  <label for="quantity">প্রোডাক্ট সংখ্যা *</label>
+  <input type="number" id="quantity" name="quantity" required>
+
+  <!-- এন্ট্রি তারিখ -->
+  <label for="entry_date">এন্ট্রি তারিখ</label>
+  <input type="date" id="entry_date" name="entry_date">
+
+  <!-- বিক্রয় মূল্য -->
+  <label for="sell_price">বিক্রয় মূল্য *</label>
+  <input type="number" step="0.01" id="sell_price" name="sell_price" required>
+
+  <!-- ক্রয় মূল্য -->
+  <label for="buy_price">ক্রয় মূল্য *</label>
+  <input type="number" step="0.01" id="buy_price" name="buy_price" required>
+
+  <h4>Product Advance Information</h4>
+
+  <!-- ইউনিট -->
+  <label for="unit">প্রোডাক্ট ইউনিট</label>
+  <select id="unit" name="unit">
+    <option value="pis">Pis</option>
+    <option value="goj">Goj</option>
+    <option value="dojon">Dojon</option>
+    <option value="inch">Inch</option>
+    <option value="haat">Haat</option>
+  </select>
+
+  <!-- Switch Options -->
+  <div class="switches">
+    <label class="switch">
+      <input type="checkbox" name="stock_alert" value="1">
+      <span class="slider"></span>
+      <span class="switch-label">স্টক কমের অ্যালার্ট</span>
+    </label>
+    <label class="switch">
+      <input type="checkbox" name="discount" value="1">
+      <span class="slider"></span>
+      <span class="switch-label">ডিসকাউন্ট</span>
+    </label>
+    <label class="switch">
+      <input type="checkbox" name="vat_tax" value="1">
+      <span class="slider"></span>
+      <span class="switch-label">ভ্যাট / ট্যাক্স</span>
+    </label>
+  </div>
+
+  <!-- প্রোডাক্ট ছবি -->
+  <label for="product_pic">প্রোডাক্ট ছবি</label>
+  <input type="file" id="product_pic" name="product_pic" accept="image/*" onchange="previewImage(event)">
+  <img id="preview" style="max-width: 100px; margin-top: 10px; display: none;"/>
+
+  <!-- সাবমিট বাটন -->
+  <button type="submit">Save</button>
+</form>
+
+<!-- Styling -->
+<style>
+  body {
+    font-family: 'Noto Sans Bengali', sans-serif;
+    background: #f0f2f5;
+    padding: 20px;
+  }
+
+  form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #c7e0f5;
+    background: #f9fbff;
+    box-shadow: inset 0 0 3px #e0f0ff;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    background: #eef8ff;
+  }
+
+  .switches {
+    margin-top: 15px;
+  }
+
+  .switch {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .switch input {
+    display: none;
+  }
+
+  .slider {
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: 0.4s;
+    margin-right: 10px;
+  }
+
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  .switch input:checked + .slider {
+    background-color: #4CAF50;
+  }
+
+  .switch input:checked + .slider::before {
+    transform: translateX(20px);
+  }
+
+  .switch-label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    background: linear-gradient(135deg, #0056b3, #0095c9);
+  }
+
+  @media (max-width: 600px) {
+    form {
+      padding: 15px;
+    }
+
+    button {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<!-- Image Preview Script -->
+<script>
+  function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      const preview = document.getElementById('preview');
+      preview.src = reader.result;
+      preview.style.display = 'block';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>

@@ -98,7 +98,7 @@
       <i class="fas fa-arrow-left"></i>
     </div>
     <div><span>দোকানের স্টক</span></div>
-    <div class="border p-1 rounded-3 border-secondary"><span>স্টকের ইতিহাস</span></div>
+    <div class="border p-1 rounded-3 border-secondary"><span><a href="shop_stock_history.php" style="text-decoration:none">স্টকের ইতিহাস</a></span></div>
     <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
   </div>
   <div class="blue-box">
@@ -120,11 +120,12 @@
   <div class="text-center mb-2">
    <div class="receipt-card">
       <div><strong>রিসিপ্ট # DS97X4N</strong></div>
-      <div>গাজাজাজ | 1 আইটেম</div>
-      <div class="text-muted small">লিলেন সিকুয়েল | ২৮-মে-২০২৫ ০৪:৪৮</div>
+      <div>সুতি আরি</div>
+      <div>500</div>
+      <div class="text-muted small"> ২৮-মে-২০২৫ </div>
       <div class="d-flex justify-content-between mt-2">
         <div class="fw-bold text-danger">৳ 230</div>
-        <span class="badge bg-danger">বাকি</span>
+        <span class="badge bg-danger">কোড</span>
       </div>
     </div>
   </div>
@@ -137,7 +138,7 @@
 </main>
 <div class="last-item d-flex justify-content-around mb-3">
   <div class="item-1 r"><span> পন্য সংখ্যা আপডেট করুন</span></div>
-  <div class="item-2 r"><span>প্রোডাক্ট যুক্ত করুন</span></div>
+  <div class="item-2 r"><a href="add_product.php" style="text-decoration:none;color:white; cursor:pointer"><span>প্রোডাক্ট যুক্ত করুন</span></a></div>
 </div>
 
 <script>
