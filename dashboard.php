@@ -131,7 +131,7 @@
 
   <div class="section">
     <div class="grid">
-      <div class="menu-item"><img src="img/icons-buy.png" alt=""><br>কেনা</div>
+      <a class="menu-item" href="buy_product.php"><img src="img/icons-buy.png" alt=""><br>কেনা</a>
       <div class="menu-item"><img src="img/icons-sell.png"><br>বেচা</div>
     </div>
   </div>

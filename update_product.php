@@ -264,7 +264,7 @@ $conn->close();
         <input type="number" id="min_stock" name="min_stock" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="উদাহরণ: 10" value="<?= $product['min_stock'] ?? '' ?>">
       </div>
 
-      <label class="switch">
+      <!-- <label class="switch">
         <input type="checkbox" name="discount" value="1" <?= ($product['discount'] ?? 0) ? 'checked' : '' ?>>
         <span class="slider"></span>
         <span class="switch-label">ডিসকাউন্ট</span>
@@ -273,7 +273,7 @@ $conn->close();
         <input type="checkbox" name="vat_tax" value="1" <?= ($product['vat_tax'] ?? 0) ? 'checked' : '' ?>>
         <span class="slider"></span>
         <span class="switch-label">ভ্যাট / ট্যাক্স</span>
-      </label>
+      </label> -->
     </div>
 
     <label for="product_pic">প্রোডাক্ট ছবি</label>

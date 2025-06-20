@@ -141,7 +141,7 @@ include 'db.php'; // Include your database connection file
  
 
   <div class="search-filter d-flex">
-    <input type="text" class="form-control me-2" placeholder="খুঁজুন (নাম, মোবাইল)">
+    <input type="text" class="form-control me-2" placeholder="প্রোডাক্ট  খুঁজুন (নাম, কোড)">
     <button class="btn btn-outline-secondary">ফিল্টার</button>
   </div>
 
