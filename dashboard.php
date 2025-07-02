@@ -152,7 +152,7 @@
       <div class="menu-item"><a href="contact.php"><img src="img/contact.png"><br></a>যোগাযোগ</div>
       <div class="menu-item"><a href="shopStock.php"><img src="img/stock.png"><br>দোকান স্টক</a> </div>
       <div class="menu-item"><img src="img/dying.png"><br>ডাইং</div>
-      <div class="menu-item"><img src="img/godaun.png"><br>গোডাউন স্টক</div><br>
+      <div class="menu-item"><a href="wherehouse.php"><img src="img/godaun.png"><br>গোডাউন স্টক</a></div><br>
       <div class="menu-item"><img src="img/textile.png"><br>টেক্সটাইল</div>
       <div class="menu-item"><img src="img/funds.png"><br>পুঁজি</div>
       <div class="menu-item"><img src="img/result2.png"><br>ব্য়বসার রিপোর্ট</div>

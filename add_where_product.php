@@ -1,23 +1,12 @@
 <?php
   include "db.php";
-
-$product = [];
-  if(isset($_GET['id'])){
-    $product_id = $_GET['id'] ?? $_POST['id'] ?? 0;
-    $query = "SELECT * FROM products WHERE id = $product_id";
-    $result = mysqli_query($conn,$query);
-    if($result){
-        $product = mysqli_fetch_assoc($result);
-    }
-    
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update product</title>
+  <title>add product</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
@@ -186,30 +175,21 @@ if (isset($_FILES['product_pic']) && $_FILES['product_pic']['error'] == 0) {
   $target_file = $upload_dir . $image_name;
 
   move_uploaded_file($_FILES["product_pic"]["tmp_name"],$target_file);
-}else {
-    $image_name = $_POST['old_image'] ?? '';
 }
 
 
-// update query
-$sql = "UPDATE products SET 
-            product_name=?, product_quantity=?, product_entry_date=?, 
-            sell_price=?, buy_price=?, unit=?, 
-            stock_alert=?, discount=?, vat_tax=?, 
-            image=?, min_stock=? 
-          WHERE id=?";
+// Insert query
+$sql = "INSERT INTO products
+(product_name,product_quantity,product_entry_date,sell_price,buy_price,unit,stock_alert,discount,vat_tax,image,min_stock)
+VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 
 $stmp = $conn->prepare($sql);
-$stmp->bind_param("sissddiiisii",
-  $product_name,$product_quantity,$product_entry_date,
-  $sell_price,$buy_price,$unit,
-  $stock_alert,$discount,$vat_tax,
-  $image_name,$min_stock,$product_id);
+$stmp->bind_param("sissddiiisi",$product_name,$product_quantity,$product_entry_date,$sell_price,$buy_price,$unit,$stock_alert,$discount,$vat_tax,$image_name,$min_stock);
 
 
 if($stmp->execute()){
-  echo "<script>alert('product saved successfully !');window.location.href='shopStock.php';</script>";
+  echo "<script>alert('product saved successfully !');window.location.href='add_product.php';</script>";
 }else{
   echo "something wrong" . $stmp->error;
 }
@@ -222,55 +202,53 @@ $conn->close();
     <div class="back-btn" onclick="goBack()">
       <i class="fas fa-arrow-left"></i>
     </div>
-    <div><span>প্রোডাক্ট আপডেট করুন</span></div>
+    <div><span>প্রোডাক্ট যুক্ত করুন</span></div>
     <i class="fas fa-question-circle"></i>
   </header>
 
   <form  method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;" id="productForm">
-    <input type="hidden" name="id" value="<?= $product['id'] ?? '' ?>">
-
     <label for="product_name">প্রোডাক্ট নাম *</label>
-    <input type="text" id="product_name" name="product_name" required placeholder="প্রোডাক্টের নাম লিখুন" value="<?= $product['product_name'] ?? '' ?>">
+    <input type="text" id="product_name" name="product_name" required placeholder="প্রোডাক্টের নাম লিখুন">
 
     <label for="product_quantity">প্রোডাক্ট সংখ্যা *</label>
-    <input type="number" id="product_quantity" name="product_quantity" required placeholder="প্রোডাক্টের সংখ্যা লিখুন" min="1" value="<?= $product['product_quantity'] ?? '' ?>" >
+    <input type="number" id="product_quantity" name="product_quantity" required placeholder="প্রোডাক্টের সংখ্যা লিখুন" min="1">
 
     <label for="product_entry_date">প্রোডাক্ট দোকানে কবে ঢুকেছে তারিখ</label>
-    <input type="date" id="product_entry_date" name="product_entry_date" value="<?= $product['product_entry_date'] ?? '' ?>">
+    <input type="date" id="product_entry_date" name="product_entry_date">
 
     <label for="sell_price">বিক্রয় মূল্য *</label>
-    <input type="number" step="0.01" id="sell_price" name="sell_price" required placeholder="বিক্রয় মূল্য লিখুন" value="<?= $product['sell_price'] ?? '' ?>">
+    <input type="number" step="0.01" id="sell_price" name="sell_price" required placeholder="বিক্রয় মূল্য লিখুন">
 
     <label for="buy_price">ক্রয় মূল্য *</label>
-    <input type="number" step="0.01" id="buy_price" name="buy_price" required placeholder="ক্রয় মূল্য লিখুন" value="<?= $product['buy_price'] ?? '' ?>">
+    <input type="number" step="0.01" id="buy_price" name="buy_price" required placeholder="ক্রয় মূল্য লিখুন">
 
     <label for="unit">পন্যের একক</label>
     <select id="unit" name="unit">
-  <option value="pis" <?= ($product['unit'] ?? '') == 'pis' ? 'selected' : '' ?>>পিছ</option>
-  <option value="goj" <?= ($product['unit'] ?? '') == 'goj' ? 'selected' : '' ?>>গজ</option>
-  <option value="dojon" <?= ($product['unit'] ?? '') == 'dojon' ? 'selected' : '' ?>>ডজন</option>
-  <option value="inch" <?= ($product['unit'] ?? '') == 'inch' ? 'selected' : '' ?>>ইঞ্চি</option>
-  <option value="haat" <?= ($product['unit'] ?? '') == 'haat' ? 'selected' : '' ?>>হাত</option>
-</select>
+      <option value="pis">পিছ</option>
+      <option value="goj">গজ</option>
+      <option value="dojon">ডজন</option>
+      <option value="inch">ইঞ্চি</option>
+      <option value="haat">হাত</option>
+    </select>
 
     <div class="switches">
       <label class="switch">
-        <input type="checkbox" name="stock_alert" id="stock_alert" value="1" onchange="toggleStockLimit()" <?= ($product['stock_alert'] ?? 0) ? 'checked' : '' ?>>
+        <input type="checkbox" name="stock_alert" id="stock_alert" value="1" onchange="toggleStockLimit()">
         <span class="slider"></span>
         <span class="switch-label">স্টক কমের অ্যালার্ট</span>
       </label>
       <div id="min_stock_limit_group" class="mb-4 hidden">
         <label for="min_stock" class="block mb-1 font-medium">নূন্যতম স্টক লিমিট</label>
-        <input type="number" id="min_stock" name="min_stock" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="উদাহরণ: 10" value="<?= $product['min_stock'] ?? '' ?>">
+        <input type="number" id="min_stock" name="min_stock" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="উদাহরণ: 10">
       </div>
 
       <label class="switch">
-        <input type="checkbox" name="discount" value="1" <?= ($product['discount'] ?? 0) ? 'checked' : '' ?>>
+        <input type="checkbox" name="discount" value="1">
         <span class="slider"></span>
         <span class="switch-label">ডিসকাউন্ট</span>
       </label>
       <label class="switch">
-        <input type="checkbox" name="vat_tax" value="1" <?= ($product['vat_tax'] ?? 0) ? 'checked' : '' ?>>
+        <input type="checkbox" name="vat_tax" value="1">
         <span class="slider"></span>
         <span class="switch-label">ভ্যাট / ট্যাক্স</span>
       </label>
@@ -278,21 +256,9 @@ $conn->close();
 
     <label for="product_pic">প্রোডাক্ট ছবি</label>
     <input type="file" id="product_pic" name="product_pic" accept="image/*" onchange="previewImage(event)">
-    <input type="hidden" name="old_image" value="<?= $product['image'] ?? '' ?>">
-
-    <?php if (!empty($product['image'])): ?>
-  <div style="margin-top: 10px;">
-    <label>বর্তমান ছবি:</label><br>
-    <img src="uploads/<?= htmlspecialchars($product['image']) ?>" width="100" alt="Old Image">
-  </div>
-<?php endif; ?>
-
-    <input type="hidden" name="old_image" value="<?= $product['image'] ?? '' ?>">
     <img id="preview" style="max-width: 100px; margin-top: 10px; display: none;"/>
 
-    <button type="submit" name="save_product">
-    <?= isset($product['id']) ? 'Update Product' : 'Add Product' ?>
-  </button>
+    <button type="submit">Save</button>
   </form>
 
   <script>

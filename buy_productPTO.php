@@ -1,3 +1,4 @@
+<?php include 'buy_product.php'?>
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -267,8 +268,8 @@
   <label for="buy_price"> পার্টির নাম *</label>
     <input type="text"  id="clint_name" name="clint_name" required placeholder="পার্টির নাম লিখুন">
 
-  <label for="buy_price"> পার্টির ঠিকানা *</label>
-    <input type="text"  id="clint_address" name="clint_address" required placeholder="পার্টির ঠিকানা লিখুন">
+  <label for="buy_price"> পার্টির ঠিকানা </label>
+    <input type="text"  id="clint_address" name="clint_address"  placeholder="পার্টির ঠিকানা লিখুন">
 
   <label for="buy_price"> পার্টির ফোন নাম্বার *</label>
     <input type="text"  id="clint_phone" name="clint_phone" required placeholder="পার্টির ফোন নাম্বার লিখুন">

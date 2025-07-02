@@ -264,12 +264,12 @@
      </select>
 
     <label for="product_name">প্রোডাক্ট নাম *</label>
-    <input type="text" id="product_name" name="product_name" required placeholder="প্রোডাক্টের নাম লিখুন">
+    <input type="text" id="product_name" name="product_name" required placeholder="প্রোডাক্টের নাম লিখুন" required>
 
     
 
     <label for="product_entry_date">কেনার তারিখ</label>
-    <input type="date" id="product_entry_date" name="product_entry_date">
+    <input type="date" id="product_entry_date" name="product_entry_date" >
 
     <!-- <label for="sell_price">বিক্রয় মূল্য *</label>
     <input type="number" step="0.01" id="sell_price" name="sell_price" required placeholder="বিক্রয় মূল্য লিখুন"> -->
@@ -278,7 +278,7 @@
 
 
   <label for="unit">পণ্যের ক্যাটাগরি</label>
-<select id="unit" name="unit" onchange="checkNewCategory(this.value)">
+<select id="unit" name="unit" onchange="checkNewCategory(this.value)">button
   <option value="সুতি">সুতি</option>
   <option value="লিলেন">লিলেন</option>
   <option value="ভিসকস">ভিসকস</option>
@@ -309,23 +309,13 @@
   <textarea id="product_details" name="product_details" class="form-control" required placeholder="এখানে লিখুন"></textarea>
  
 
-      <!-- <label class="switch">
-        <input type="checkbox" name="discount" value="1">
-        <span class="slider"></span>
-        <span class="switch-label">ডিসকাউন্ট</span>
-      </label>
-      <label class="switch">
-        <input type="checkbox" name="vat_tax" value="1">
-        <span class="slider"></span>
-        <span class="switch-label">ভ্যাট / ট্যাক্স</span>
-      </label> -->
     </div>
 
     <label for="product_pic">প্রোডাক্ট ছবি</label>
     <input type="file" id="product_pic" name="product_pic" accept="image/*" onchange="previewImage(event)">
     <img id="preview" style="max-width: 100px; margin-top: 10px; display: none;"/>
 
-    <a href="buy_productPTO.php"><button type="button">Next</button></a>
+    <a href="buy_productPTO.php"><button type="submit">Next</button></a>
   </form>
 
 
