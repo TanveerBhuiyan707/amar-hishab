@@ -310,6 +310,29 @@
     }
  
 
+
+    .total-box {
+  margin-top: 20px;
+}
+
+.total-amount-box {
+  font-size: 20px;
+  font-weight: bold;
+  color: #155724;
+  background-color: #d4edda;
+  border: 2px solid #c3e6cb;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(21, 87, 36, 0.1);
+  transition: 0.3s ease-in-out;
+}
+.total-amount-box:focus {
+  outline: none;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+}
+
+
   </style>
 </head>
 <body class="bg-light">
@@ -412,9 +435,9 @@
           <label class="mt-3">পণ্যের পরিমাণ *</label>
           <input type="number" name="product_quantity" placeholder="এখানে লিখুন" class="form-control" min="1" required>
 
-          <div class="mt-3">
-            <label>মোট পরিমাণ:</label>
-<input type="text" id="totalAmount" class="form-control" readonly>          </div>
+          <div class="mt-3 total-box">
+            <label for="totalAmount">মোট পরিমাণ:</label>
+<input type="text" id="totalAmount" class="form-control total-amount-box" readonly>          </div>
 
 <div class="switches">
       <label class="switch">
