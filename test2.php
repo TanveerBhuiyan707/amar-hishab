@@ -358,9 +358,8 @@
        <option value="haat">হাত</option>
      </select>
           <label>পণ্যের নাম *</label>
-          <input type="text" name="product_name" class="form-control" required>
-          <label class="mt-3">পণ্যের পরিমাণ *</label>
-          <input type="number" name="product_quantity" class="form-control" min="1" required>
+          <input type="text" name="product_name" placeholder="এখানে লিখুন" class="form-control" required>
+          
           <label class="mt-3">কেনার তারিখ</label>
           <input type="date" name="product_entry_date" class="form-control">
           <label for="unit">পণ্যের ক্যাটাগরি</label>
@@ -390,7 +389,7 @@
   }
 </script>
           <label class="mt-3">মন্তব্য</label>
-          <textarea name="product_details" class="form-control"></textarea>
+          <textarea name="product_details" placeholder="এখানে লিখুন" class="form-control"></textarea>
           <label class="mt-3">পণ্যের ছবি</label>
           <input type="file" name="product_pic" class="form-control">
           <button type="button" class="btn btn-primary btn-next" onclick="nextTab('party-tab', 2)">Next</button>
@@ -398,18 +397,46 @@
 
         <div class="tab-pane fade" id="party" role="tabpanel">
           <label>পার্টির নাম *</label>
-          <input type="text" name="clint_name" class="form-control" required>
+          <input type="text" name="clint_name" placeholder="এখানে লিখুন" class="form-control" required>
           <label class="mt-3">ঠিকানা</label>
-          <input type="text" name="clint_address" class="form-control">
+          <input type="text" name="clint_address" placeholder="এখানে লিখুন" class="form-control">
           <label class="mt-3">ফোন নাম্বার </label>
-          <input type="text" name="clint_phone" class="form-control" required>
+          <input type="text" name="clint_phone" placeholder="এখানে লিখুন" class="form-control" required>
           
           <button type="button" class="btn btn-primary btn-next" onclick="nextTab('payment-tab', 3)">Next</button>
         </div>
 
         <div class="tab-pane fade" id="payment" role="tabpanel">
           <label>ক্রয় মূল্য</label>
-          <input type="number" name="buy_price" class="form-control">
+          <input type="number" placeholder="এখানে লিখুন" name="buy_price" class="form-control">
+          <label class="mt-3">পণ্যের পরিমাণ *</label>
+          <input type="number" name="product_quantity" placeholder="এখানে লিখুন" class="form-control" min="1" required>
+
+          <div class="mt-3">
+            <label>মোট পরিমাণ:</label>
+<input type="text" id="totalAmount" class="form-control" readonly>          </div>
+
+<div class="switches">
+      <label class="switch">
+        <input type="checkbox" name="discount" id="discount" value="1" onchange="toggleStockLimit()">
+        <span class="slider"></span>
+        <span class="switch-label">ডিসকাউন্ট</span>
+      </label>
+      <div id="discount_limit_group" class="mb-4 hidden">
+        <label for="discount" class="block mb-1 font-medium">ডিসকাউন্ট কত পেয়েছেন</label>
+<input type="number" id="discount_amount" name="discount_amount" class="form-control" placeholder="এখানে লিখুন">      </div>
+
+          <div class="switches">
+      <label class="switch">
+        <input type="checkbox" name="vat_tax" id="vat_tax" value="1" onchange="toggleStockLimit2()">
+        <span class="slider"></span>
+        <span class="switch-label">ভ্যাট / ট্যাক্স</span>
+      </label>
+      <div id="vat_tax_limit_group" class="mb-4 hidden">
+        <label for="vat_tax" class="block mb-1 font-medium">ভ্যাট / ট্যাক্স কত ? </label>
+<input type="number" id="vat_tax_amount" name="vat_tax_amount" class="form-control" placeholder="এখানে লিখুন">      </div>
+    </div>
+
              <label for="payment_type">পেমেন্টের ধরন</label>
 <select id="payment_type" name="payment_type" required onchange="showPaymentFields()">
     <option value="" disabled selected>নির্বাচন করুন</option>
@@ -497,29 +524,8 @@ function togglePartyFields() {
     }
 }
 </script>
-          <div class="switches">
-      <label class="switch">
-        <input type="checkbox" name="discount" id="discount" value="1" onchange="toggleStockLimit()">
-        <span class="slider"></span>
-        <span class="switch-label">ডিসকাউন্ট</span>
-      </label>
-      <div id="discount_limit_group" class="mb-4 hidden">
-        <label for="discount" class="block mb-1 font-medium">ডিসকাউন্ট কত পেয়েছেন</label>
-        <input type="number" id="discount" name="discount" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="এখানে লিখুন">
-      </div>
-
-          <div class="switches">
-      <label class="switch">
-        <input type="checkbox" name="vat_tax" id="vat_tax" value="1" onchange="toggleStockLimit2()">
-        <span class="slider"></span>
-        <span class="switch-label">ভ্যাট / ট্যাক্স</span>
-      </label>
-      <div id="vat_tax_limit_group" class="mb-4 hidden">
-        <label for="vat_tax" class="block mb-1 font-medium">ভ্যাট / ট্যাক্স কত ? </label>
-        <input type="number" id="vat_tax" name="vat_tax" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="এখানে লিখুন ">
-      </div>
-    </div>
-          <input type="number" name="vat_tax" class="form-control">
+    
+          <!-- <input type="number" name="vat_tax" class="form-control"> -->
           <button type="submit" class="btn btn-success btn-next">Save</button>
         </div>
       </div>
@@ -604,6 +610,55 @@ function togglePartyFields() {
         stockLimitGroup2.classList.add("hidden");
       }
     }
+
+
+    // total amount script
+
+  // এই ফাংশনটি দাম এবং পরিমাণ ইনপুট অনুযায়ী মোট দাম আপডেট করবে
+  function calculateTotal() {
+    const price = parseFloat(document.querySelector('[name="buy_price"]').value) || 0;
+    const quantity = parseFloat(document.querySelector('[name="product_quantity"]').value) || 0;
+
+    let discount = 0;
+    let vat = 0;
+
+    const discountInput = document.querySelector('[name="discount_amount"]');
+    const vatInput = document.querySelector('[name="vat_tax_amount"]');
+
+    if (document.getElementById("discount").checked && discountInput) {
+      discount = parseFloat(discountInput.value) || 0;
+    }
+
+    if (document.getElementById("vat_tax").checked && vatInput) {
+      vat = parseFloat(vatInput.value) || 0;
+    }
+
+    let total = (price * quantity) - discount + vat;
+    document.getElementById("totalAmount").value = total.toFixed() + " ৳";
+  }
+
+  // Initial Event Binding
+  document.querySelector('[name="buy_price"]').addEventListener('input', calculateTotal);
+  document.querySelector('[name="product_quantity"]').addEventListener('input', calculateTotal);
+  document.getElementById("discount").addEventListener('change', function() {
+    toggleStockLimit(); // ফিল্ড দেখাও
+    setTimeout(() => {
+      const input = document.querySelector('[name="discount_amount"]');
+      if (input) input.addEventListener('input', calculateTotal);
+    }, 100);
+    calculateTotal();
+  });
+
+  document.getElementById("vat_tax").addEventListener('change', function() {
+    toggleStockLimit2(); // ফিল্ড দেখাও
+    setTimeout(() => {
+      const input = document.querySelector('[name="vat_tax_amount"]');
+      if (input) input.addEventListener('input', calculateTotal);
+    }, 100);
+    calculateTotal();
+  });
+
+
   </script>
 </body>
 </html>
